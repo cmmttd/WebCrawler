@@ -1,5 +1,7 @@
 package crawler;
 
+import java.io.IOException;
+
 /**
  * Требуется написать многопоточный HTTP-crawler.
  * Crawler должен принимать на вход URL сайта и глубину сканирования.
@@ -10,12 +12,11 @@ package crawler;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
-        String url = "https://pikabu.ru/";
+        String url = "https://ru.wikipedia.org/wiki/Java";
         int depth = 10000;
 
-        Crawler.findHundred(url, depth);
-        //System.out.println(Crawler.findHundred(url, depth));
+        System.out.println(Crawler.findHundred(url, depth));
     }
 }
