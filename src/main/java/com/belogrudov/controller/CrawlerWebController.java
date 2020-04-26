@@ -19,7 +19,7 @@ public class CrawlerWebController {
     }
 
     //curl --header "Content-Type: application/json" -X POST --data @request.json http://localhost:8080/parse
-    @PostMapping(value = "/parse")
+    @PostMapping("/parse")
     public ResponseEntity<ResponseBodyCrawler> parse(@RequestBody RequestBodyCrawler request) throws IOException, InterruptedException {
         return ResponseEntity.ok(new ResponseBodyCrawler(Crawler.findHundred(request.getLink(), request.getDepth())));
     }
