@@ -23,7 +23,7 @@ public class Crawler {
     };
 
     public static Map<String, Map<String, Integer>> findHundred(String root, int depth) throws InterruptedException, IOException {
-        if (root == null || root.isEmpty() || depth < 1) throw new IllegalArgumentException();
+        if (root == null || root.isEmpty() || depth < 0) throw new IllegalArgumentException();
         HashSet<String> allLinks = Jsoup.connect(root)
                 .timeout(5000)
                 .get()
@@ -53,7 +53,7 @@ public class Crawler {
                             .get()
                             .text()
                             .split("\\s+"))
-                    .filter(x -> x.matches("^[\\w]+$") && !x.matches("^[0-9]+$")) //utf-8 like words
+                    .filter(x -> x.matches("^[a-zA-ZА-Яа-я]+$")) //utf-8 like words
                     .collect(Collectors.toMap(x -> x, x -> 1, (x1, x2) -> x1 += 1, HashMap::new));
 
             return temp.entrySet()
