@@ -15,11 +15,6 @@ public class CrawlerWebController {
         return "Ready to find";
     }
 
-    @GetMapping("/{name}")
-    public String getName(@PathVariable String name) {
-        return "Ready to find " + name;
-    }
-
     //curl --header "Content-Type: application/json" -X POST --data @request.json http://localhost:8080/parse
     @PostMapping("/parse")
     public ResponseEntity<ResponseBodyCrawler> parse(@RequestBody RequestBodyCrawler request) throws IOException, InterruptedException {
