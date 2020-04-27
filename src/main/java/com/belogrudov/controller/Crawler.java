@@ -53,7 +53,7 @@ public class Crawler {
                             .get()
                             .text()
                             .split("\\s+"))
-                    .filter(x -> x.matches("^[\\w]+$")) //utf-8 like words
+                    .filter(x -> x.matches("^[\\w]+$") && !x.matches("^[0-9]+$")) //utf-8 like words
                     .collect(Collectors.toMap(x -> x, x -> 1, (x1, x2) -> x1 += 1, HashMap::new));
 
             return temp.entrySet()
