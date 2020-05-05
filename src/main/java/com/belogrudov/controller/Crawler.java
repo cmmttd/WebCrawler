@@ -54,6 +54,7 @@ public class Crawler {
                             .text()
                             .split("\\s+"))
                     .filter(x -> x.matches("^[a-zA-ZА-Яа-я_]{2,}$")) //utf-8 like words
+                    .map(String::toLowerCase)
                     .collect(Collectors.toMap(x -> x, x -> 1, (x1, x2) -> x1 += 1, HashMap::new));
 
             return temp.entrySet()

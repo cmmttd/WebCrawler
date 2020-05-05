@@ -3,7 +3,10 @@ package com.belogrudov.controller;
 import com.belogrudov.requestresponsebody.RequestBodyCrawler;
 import com.belogrudov.requestresponsebody.ResponseBodyCrawler;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
@@ -19,6 +22,11 @@ public class CrawlerWebController {
     @PostMapping("/parse")
     public ResponseEntity<ResponseBodyCrawler> parse(@RequestBody RequestBodyCrawler request) throws IOException, InterruptedException {
         return ResponseEntity.ok(new ResponseBodyCrawler(Crawler.findHundred(request.getLink(), request.getDepth())));
+    }
+
+    @PostMapping("/parseSpark")
+    public ResponseEntity<ResponseBodyCrawler> parseSpark(@RequestBody RequestBodyCrawler request) throws IOException, InterruptedException {
+        return ResponseEntity.ok(new ResponseBodyCrawler(CrawlerSpark.findHundred(request.getLink(), request.getDepth())));
     }
 
 }
